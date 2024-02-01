@@ -1,0 +1,9 @@
+name: "Log Commit Message"
+description: "Outputs the commit message"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+inputs:
+  COMMIT_MESSAGE:
+    description: "The commit message to log"
+    required: true
