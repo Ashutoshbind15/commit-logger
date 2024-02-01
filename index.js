@@ -32,7 +32,8 @@ try {
   }
 
   console.log(`Commit Message: ${commitMessage}`);
-  console.log(`Labels: ${generateSingleTextResponse(commitMessage)}`);
+  const labelString = await generateSingleTextResponse(commitMessage);
+  console.log(`Labels: ${labelString}`);
 } catch (error) {
   core.setFailed(`Action failed with error ${error}`);
 }
