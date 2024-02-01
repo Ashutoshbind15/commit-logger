@@ -12,6 +12,7 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^6.0.0",
+    "@google/generative-ai": "^0.2.0",
     "colors": "^1.4.0"
   }
 }
