@@ -1,4 +1,4 @@
 #!/bin/sh -l
 
 echo "Hello World"
-echo "Commit Message: $1"
+echo "Commit Message: $INPUT_COMMIT_MESSAGE"
