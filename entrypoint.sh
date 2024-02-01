@@ -1,3 +1,3 @@
-#!/bin/sh -l
+!/bin/sh -l
 
 echo "Commit Message: $1"
