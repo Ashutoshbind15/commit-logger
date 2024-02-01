@@ -19,21 +19,26 @@ const generateSingleTextResponse = async (
 
 try {
   // Get the commit message input from the workflow file
-  const commitMessage = core.getInput("COMMIT_MESSAGE", { required: true });
-  const token = process.env.GITHUB_TOKEN;
 
-  const octokit = github.getOctokit(token);
-  const { context } = github;
-  const { owner, repo } = context.repo;
+  const helper = async () => {
+    const commitMessage = core.getInput("COMMIT_MESSAGE", { required: true });
+    const token = process.env.GITHUB_TOKEN;
 
-  if (context.payload.pull_request == null) {
-    core.setFailed("No pull request found.");
-    return;
-  }
+    const octokit = github.getOctokit(token);
+    const { context } = github;
+    const { owner, repo } = context.repo;
 
-  console.log(`Commit Message: ${commitMessage}`);
-  const labelString = await generateSingleTextResponse(commitMessage);
-  console.log(`Labels: ${labelString}`);
+    if (context.payload.pull_request == null) {
+      core.setFailed("No pull request found.");
+      return;
+    }
+
+    console.log(`Commit Message: ${commitMessage}`);
+    const labelString = await generateSingleTextResponse(commitMessage);
+    console.log(`Labels: ${labelString}`);
+  };
+
+  helper();
 } catch (error) {
   core.setFailed(`Action failed with error ${error}`);
 }
