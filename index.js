@@ -1,8 +1,6 @@
 // index.js
 const core = require("@actions/core");
-const github = require("@actions/github");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-
 const generativeAI = new GoogleGenerativeAI(process.env.GEMINI_PRO_API_KEY);
 
 const generateSingleTextResponse = async (
@@ -19,17 +17,6 @@ const generateSingleTextResponse = async (
 
 const helper = async () => {
   const commitMessage = core.getInput("COMMIT_MESSAGE", { required: true });
-  const token = process.env.GITHUB_TOKEN;
-
-  const octokit = github.getOctokit(token);
-  const { context } = github;
-  const { owner, repo } = context.repo;
-
-  if (context.payload.pull_request == null) {
-    core.setFailed("No pull request found.");
-    return;
-  }
-
   console.log(`Commit Message: ${commitMessage}`);
   const labelString = await generateSingleTextResponse(commitMessage);
   console.log(labelString);
