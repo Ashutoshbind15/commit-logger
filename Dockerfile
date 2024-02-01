@@ -1,5 +1,5 @@
 # Use the official Node.js 14 image as a parent image
-FROM node:14-alpine
+FROM node:18.14.0-alpine3.14
 
 LABEL "com.github.actions.name"="Log Commit Message"
 LABEL "com.github.actions.description"="Logs the message of the current commit"
